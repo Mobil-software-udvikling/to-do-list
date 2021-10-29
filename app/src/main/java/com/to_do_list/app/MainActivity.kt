@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
+    private var rView = binding.rvList
 
     private lateinit var toDoList: MutableList<ToDoList>
     private lateinit var toDoListAdapter: ToDoListAdapter
@@ -40,7 +41,9 @@ class MainActivity : AppCompatActivity() {
 
         toDoListAdapter = ToDoListAdapter(toDoList)
 
-        binding.rvList.adapter = toDoListAdapter
+        rView.adapter = toDoListAdapter
+        var layoutManager = LinearLayoutManager(this)
+        rView.layoutManager = layoutManager
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

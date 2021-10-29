@@ -15,7 +15,6 @@ class ToDoListAdapter(private val toDoLists: MutableList<ToDoList>) :
     }
 
     override fun onBindViewHolder(holderList: ViewHolder, position: Int) {
-        Log.i("test", "Test from within " + toDoLists.toString())
         with(holderList) {
             with(toDoLists[position]) {
                 binding.tvColab.text = collaborators.toString()
