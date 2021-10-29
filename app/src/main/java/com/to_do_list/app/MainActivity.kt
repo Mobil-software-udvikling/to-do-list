@@ -6,8 +6,20 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import android.provider.DocumentsContract
+import android.util.Log
+import android.view.LayoutInflater
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.to_do_list.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var toDoList: MutableList<ToDoList>
+    private lateinit var toDoListAdapter: ToDoListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,18 +33,37 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        loadList()
+
+        toDoListAdapter = ToDoListAdapter(toDoList)
+
+        binding.rvList.adapter = toDoListAdapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
-        return when(item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
-                val drawer : DrawerLayout = findViewById(R.id.drawer)
+                val drawer: DrawerLayout = findViewById(R.id.drawer)
                 drawer.openDrawer(GravityCompat.START)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
 
+    private fun loadList() {
+        toDoList = listOf(
+            ToDoList(ArrayList(), "List 1", ArrayList()),
+            ToDoList(ArrayList(), "List 2", ArrayList()),
+        ) as MutableList<ToDoList>
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
