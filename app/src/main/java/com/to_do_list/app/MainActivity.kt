@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         drawer.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
@@ -36,5 +35,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
 }
