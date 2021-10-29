@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         rView!!.adapter = toDoListAdapter
         var layoutManager = LinearLayoutManager(this)
         rView!!.layoutManager = layoutManager
-
+        
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
