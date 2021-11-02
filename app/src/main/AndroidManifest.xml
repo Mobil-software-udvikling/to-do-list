@@ -10,16 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Todolist">
         <activity
-            android:name=".ToDoOverview"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="Main" />
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:label="ToDoList">
+            android:label="ToDoList"/>
+        <activity
+            android:name=".ToDoOverview"
+            android:exported="true" />
+        <activity
+            android:name=".AddToDO"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
