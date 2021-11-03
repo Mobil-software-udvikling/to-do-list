@@ -15,8 +15,6 @@ import com.to_do_list.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding get() = _binding!!
     private var rView : RecyclerView? = null
 
     private lateinit var toDoList: MutableList<ToDoList>
@@ -34,18 +32,14 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         loadList()
-
         toDoListAdapter = ToDoListAdapter(toDoList)
 
-        rView = binding.rvList
+        rView = findViewById(R.id.rv_list)
         rView!!.adapter = toDoListAdapter
         var layoutManager = LinearLayoutManager(this)
         rView!!.layoutManager = layoutManager
-        
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -65,10 +59,5 @@ class MainActivity : AppCompatActivity() {
             ToDoList(ArrayList(), "List 1", ArrayList()),
             ToDoList(ArrayList(), "List 2", ArrayList()),
         ) as MutableList<ToDoList>
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
