@@ -11,7 +11,7 @@
         android:id="@+id/toolbar2"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/mono_orange"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_marginStart="137dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="141dp"
-        android:text="textView"
+        android:text="titleOfList"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvTasksToDo"
         android:layout_width="224dp"
         android:layout_height="53dp"
         android:layout_marginTop="34dp"
@@ -49,6 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvToDos"
         android:layout_width="224dp"
         android:layout_height="554dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,5 +57,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/mono_orange"
+        android:clickable="true"
+        android:tint="@color/black"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
