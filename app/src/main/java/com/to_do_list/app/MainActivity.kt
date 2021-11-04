@@ -1,24 +1,38 @@
 package com.to_do_list.app
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import android.provider.DocumentsContract
-import android.util.Log
-import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.to_do_list.app.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
 
-    private var rView : RecyclerView? = null
+class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    private var rView: RecyclerView? = null
 
     private lateinit var toDoList: MutableList<ToDoList>
     private lateinit var toDoListAdapter: ToDoListAdapter
+
+
+    //Listens for added results from other activites
+    private val getResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        //Only if the result code is ok, we add the list to ToDoLists
+        if (it.resultCode == Activity.RESULT_OK) {
+            val value = it.data?.getStringExtra("ListName")
+            toDoList.add(ToDoList(ArrayList(), value!!, ArrayList()))
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +54,10 @@ class MainActivity : AppCompatActivity() {
         var layoutManager = LinearLayoutManager(this)
         rView!!.layoutManager = layoutManager
 
+        //Set this class as clickListener
+        val button: View = findViewById(R.id.floatingActionButton)
+        button.setOnClickListener(this)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -55,9 +73,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadList() {
-        toDoList = listOf(
+        toDoList = mutableListOf(
             ToDoList(ArrayList(), "List 1", ArrayList()),
             ToDoList(ArrayList(), "List 2", ArrayList()),
-        ) as MutableList<ToDoList>
+        )
+    }
+    //Handles when the floating button to add new ToDoList is clicked
+    override fun onClick(p0: View?) {
+        //Create a new intent to handle data to and from activities
+        val intent = Intent(this, AddToDoLIstActivity::class.java)
+        getResult.launch(intent)
     }
 }
