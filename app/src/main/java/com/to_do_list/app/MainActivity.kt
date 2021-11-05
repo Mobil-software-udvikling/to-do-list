@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rView: RecyclerView? = null
 
-    private lateinit var toDoList: MutableList<ToDoList>
+    private  var toDoList: MutableList<ToDoList> = ArrayList()
     private lateinit var toDoListAdapter: ToDoListAdapter
 
 
@@ -45,8 +45,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         drawerToggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        loadList()
+        
         toDoListAdapter = ToDoListAdapter(toDoList)
 
         rView = findViewById(R.id.rv_list)
@@ -72,12 +71,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun loadList() {
-        toDoList = mutableListOf(
-            ToDoList(ArrayList(), "List 1", ArrayList()),
-            ToDoList(ArrayList(), "List 2", ArrayList()),
-        )
-    }
     //Handles when the floating button to add new ToDoList is clicked
     override fun onClick(p0: View?) {
         //Create a new intent to handle data to and from activities
