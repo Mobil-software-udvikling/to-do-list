@@ -67,6 +67,7 @@
         android:backgroundTint="@color/mono_orange"
         android:clickable="true"
         android:tint="@color/black"
+        app:backgroundTint="@color/mono_orange"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
