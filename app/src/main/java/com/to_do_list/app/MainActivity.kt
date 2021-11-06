@@ -3,6 +3,7 @@ package com.to_do_list.app
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var toDoListAdapter: ToDoListAdapter
 
 
+    private lateinit var toDoListDatabase : TodoListDatabse
+
+
     //Listens for added results from other activites
     private val getResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -29,7 +33,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //Only if the result code is ok, we add the list to ToDoLists
         if (it.resultCode == Activity.RESULT_OK) {
             val value = it.data?.getStringExtra("ListName")
-            toDoList.add(ToDoList(ArrayList(), value!!, ArrayList()))
+            toDoList.add(ToDoList(0, value!!, ""))
+            toDoListDatabase.ToDoListDao().insert(ToDoList(0, value, ""))
+            Log.i("Databse", toDoListDatabase.ToDoListDao().getAll()[0].listName)
+            toDoListDatabase.toDoDao().insert(ToDo(1, "hello world", 1, "Dottore", 1))
+            //arrayListOf(ToDo(1, "", 1, "", 0))
         }
     }
 
@@ -57,6 +65,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val button: View = findViewById(R.id.floatingActionButton)
         button.setOnClickListener(this)
 
+
+        //Room
+        toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
+
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -77,4 +91,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val intent = Intent(this, AddToDoLIstActivity::class.java)
         getResult.launch(intent)
     }
+
+
 }
