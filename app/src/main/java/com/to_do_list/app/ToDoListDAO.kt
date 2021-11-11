@@ -5,13 +5,18 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
+
+/**
+ * @author Nichlas Daniel Boraso(nibor19)
+ * @author Laust Christensen(lauch19)
+ */
 @Dao
 interface ToDoListDAO {
     @Query("SELECT * FROM ToDoList")
     fun getAll(): MutableList<ToDoList>
 
     @Insert
-    fun insert(toDoList: ToDoList) : Long
+    fun insert(toDoList: ToDoList): Long
 
     @Delete
     fun delete(toDoList: ToDoList)

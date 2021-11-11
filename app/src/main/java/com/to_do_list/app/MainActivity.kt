@@ -14,7 +14,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
+//TODO: Make comments
+/**
+ * @author Nichlas Daniel Boraso(nibor19)
+ * @author Laust Christensen(lauch19)
+ */
 class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListener {
 
     private var rView: RecyclerView? = null
@@ -37,11 +41,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
             toDoListDatabase.ToDoListDao().insert(ToDoList(0, value, ""))
             Log.i("Databse", toDoListDatabase.ToDoListDao().getAll()[0].listName)
             toDoListDatabase.toDoDao().insert(ToDo(1, "hello world", 1, "Dottore", 1))
-            //arrayListOf(ToDo(1, "", 1, "", 0))
         }
     }
 
-
+    //TODO: Load data from the database when app is started.
+    //TODO: Hold a reference to the list we want to add todos to.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -66,12 +70,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         val button: View = findViewById(R.id.floatingActionButton)
         button.setOnClickListener(this)
 
-
         //Room
         toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
-
-
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

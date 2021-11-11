@@ -5,6 +5,11 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
+
+/**
+ * @author Nichlas Daniel Boraso(nibor19)
+ * @author Laust Christensen(lauch19)
+ */
 @Dao
 interface ToDoDAO {
 
@@ -16,5 +21,7 @@ interface ToDoDAO {
 
     @Delete
     fun delete(toDo : ToDo)
+
+    //TODO: make a function to update the completion state of a specific todo.
 
 }
