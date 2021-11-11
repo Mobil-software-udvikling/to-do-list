@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Todolist">
         <activity
-            android:name=".ListOfToDos"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="Main" />
@@ -25,7 +22,10 @@
             android:exported="true" />
         <activity
             android:name=".AddToDO"
-            android:exported="true">
+            android:exported="true"/>
+        <activity
+        android:name=".ListOfToDos"
+        android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

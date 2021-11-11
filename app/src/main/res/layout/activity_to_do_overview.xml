@@ -8,18 +8,48 @@
     tools:context=".ToDoOverview">
 
     <TextView
-        android:id="@+id/etToDoText"
-        android:layout_width="251dp"
-        android:layout_height="260dp"
+        android:id="@+id/at_description"
+        android:layout_width="263dp"
+        android:layout_height="82dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="92dp"
-        android:hint="TodoTEXT"
-        android:text="OVERVIEW OF TODO"
+        android:text="description"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/at_people"
+        android:layout_width="263dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="92dp"
+        android:text="people"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.245" />
+
+    <TextView
+        android:id="@+id/at_completionState"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="92dp"
+        android:hint="TodoTEXT"
+        android:text="State"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.421" />
 </androidx.constraintlayout.widget.ConstraintLayout>
