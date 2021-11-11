@@ -6,6 +6,10 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
+/**
+ * @author Nichlas Daniel Boraso(nibor19)
+ * @author Laust Christensen(lauch19)
+ */
 class AddToDoLIstActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +18,7 @@ class AddToDoLIstActivity : AppCompatActivity(), View.OnClickListener {
         val saveButton: Button = findViewById(R.id.saveButton)
         saveButton.setOnClickListener(this)
     }
+
     //Method for handling clicks on add new List view
     override fun onClick(p0: View?) {
         //Get the input field

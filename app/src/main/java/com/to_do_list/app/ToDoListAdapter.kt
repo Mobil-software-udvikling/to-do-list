@@ -1,14 +1,15 @@
 package com.to_do_list.app
 
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.to_do_list.app.databinding.TodoListBinding
 
+
+/**
+ * @author Nichlas Daniel Boraso(nibor19)
+ * @author Laust Christensen(lauch19)
+ */
 class ToDoListAdapter(private val toDoLists: MutableList<ToDoList>) :
     RecyclerView.Adapter<ToDoListAdapter.ViewHolder>() {
 
