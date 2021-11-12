@@ -14,26 +14,22 @@
             android:exported="true"
             android:label="Main" />
         <activity
-            android:name=".SplashScreen"
-            android:exported="true"
-            android:label="ToDoList" />
+            android:name=".AddToDoLIstActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ListOfToDos"
+            android:exported="true" />
         <activity
             android:name=".AddToDO"
             android:exported="true"/>
         <activity
-        android:name=".ListOfToDos"
-        android:exported="true" >
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:label="ToDoList" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".AddToDoLIstActivity"
-            android:exported="true"
-            >
 
 
         </activity>
