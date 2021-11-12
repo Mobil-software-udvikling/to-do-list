@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
     private  var toDoList: MutableList<ToDoList> = ArrayList()
     private lateinit var toDoListAdapter: ToDoListAdapter
 
-
     private lateinit var toDoListDatabase : TodoListDatabse
+
 
 
     //Listens for added results from other activites
@@ -37,15 +37,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         //Only if the result code is ok, we add the list to ToDoLists
         if (it.resultCode == Activity.RESULT_OK) {
             val value = it.data?.getStringExtra("ListName")
-            toDoList.add(ToDoList(0, value!!, ""))
-            toDoListDatabase.ToDoListDao().insert(ToDoList(0, value, ""))
-            Log.i("Databse", toDoListDatabase.ToDoListDao().getAll()[0].listName)
-            toDoListDatabase.toDoDao().insert(ToDo(1, "hello world", 1, "Dottore", 1))
+            //toDoList.add(ToDoList(0, value!!, ""))
+            toDoListDatabase.ToDoListDao().insert(ToDoList(0, value!!, ""))
+            //Rewrite the list with the newly added toDoList
+            loadListsFromDatabase()
         }
     }
 
-    //TODO: Load data from the database when app is started.
-    //TODO: Hold a reference to the list we want to add todos to.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -72,6 +70,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
 
         //Room
         toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
+
+        //Load saved lists from databse
+        loadListsFromDatabase()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -93,6 +94,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         getResult.launch(intent)
     }
 
+    fun loadListsFromDatabase(){
+        //Clear all the data from the list
+        toDoList.clear()
+        //Get all list from databse and add them to the list
+        toDoList.addAll(toDoListDatabase.ToDoListDao().getAll())
+    }
     override fun onListClickListener(data: ToDoList) {
         val intent = Intent(this, ListOfToDos::class.java)
         intent.putExtra("ListName", data.listName)
