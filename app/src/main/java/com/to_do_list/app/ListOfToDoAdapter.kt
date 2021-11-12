@@ -21,13 +21,6 @@ class ListOfToDoAdapter(private var descriptions: List<String>) :
                 val postion: Int = adapterPosition
                 Toast.makeText(itemView.context, "You clicked on item # ${postion + 1})", Toast.LENGTH_SHORT).show()
             }
-            /*
-            itemView.setOnClickListener {
-                Intent(itemView.context, ListOfToDos::class.java).also {
-                    it.putExtra("EXTRA1_DESCRIPTION", description.text.toString())
-                    startActivity(it)
-                }
-            }*/
         }
 
     }

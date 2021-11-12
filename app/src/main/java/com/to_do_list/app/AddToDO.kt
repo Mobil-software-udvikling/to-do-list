@@ -18,8 +18,8 @@ class AddToDO : AppCompatActivity() {
         button.setOnClickListener {
 
             val description : EditText = findViewById(R.id.etDescription)
-            val completionState : TextView = findViewById(R.id.etCompletionState)
-            val people : TextView = findViewById(R.id.etPeople)
+            val completionState : EditText = findViewById(R.id.etCompletionState)
+            val people : EditText = findViewById(R.id.etPeople)
 
             if(description.text.toString().equals("") || completionState.text.toString().equals("") || people.text.toString().equals("")){
                 if(description.text.toString().equals("")){
@@ -36,7 +36,9 @@ class AddToDO : AppCompatActivity() {
                     it.putExtra("EXTRA_DESCRIPTION", description.text.toString())
                     it.putExtra("EXTRA_COMPLETIONSTATE", completionState.text.toString().toInt())
                     it.putExtra("EXTRA_PEOPLE", people.text.toString())
+                    setResult(RESULT_OK, it)
                     startActivity(it)
+                    finish()
                 }
             }
         }
