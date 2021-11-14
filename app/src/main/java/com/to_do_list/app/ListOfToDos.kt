@@ -2,6 +2,7 @@ package com.to_do_list.app
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,16 @@ class ListOfToDos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_of_to_dos)
 
-        //Addded object to-DO from the input by the user
+        //get passed listName from intent
+        val listName : String? = intent.getStringExtra("ListName")
+
+        //get the Headers text field
+        val headerText : TextView = findViewById(R.id.titleOfList)
+
+        //Set the textFields text to the retrieved listName
+        headerText.text = listName
+
+        //Added object to-DO from the input by the user
         val description = intent.getStringExtra("EXTRA_DESCRIPTION")
         val completionState = intent.getIntExtra("EXTRA_COMPLETIONSTATE", 0)
         val person = intent.getStringExtra("EXTRA_PEOPLE")

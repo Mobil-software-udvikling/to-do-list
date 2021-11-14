@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.to_do_list.app.databinding.TodoListBinding
 
-class ToDoListAdapter(private val toDoLists: MutableList<ToDoList>) :
+class ToDoListAdapter(private val toDoLists: MutableList<ToDoList>, private val listClickListener: ListOnClickListener) :
     RecyclerView.Adapter<ToDoListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -19,6 +19,9 @@ class ToDoListAdapter(private val toDoLists: MutableList<ToDoList>) :
                 binding.tvColab.text = collaborators.toString()
                 binding.tvListName.text = listName
             }
+        }
+        holderList.itemView.setOnClickListener {
+            listClickListener.onListClickListener(toDoLists[position])
         }
     }
 
