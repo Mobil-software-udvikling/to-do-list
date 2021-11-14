@@ -1,46 +1,41 @@
 package com.to_do_list.app
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.to_do_list.app.databinding.TodoLayoutBinding
 
-class ListOfToDoAdapter(private var toDo: List<ToDo>) :
+class ListOfToDoAdapter(private var todo: MutableList<ToDo>) :
     RecyclerView.Adapter<ListOfToDoAdapter.ViewHolder>() {
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val toDo: TextView = itemView.findViewById(R.id.et_descriptionTODO)
-
-        init {
-            itemView.setOnClickListener {
-                val postion: Int = adapterPosition
-                Toast.makeText(
-                    itemView.context,
-                    "You clicked on item # ${postion + 1})",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
+    inner class ViewHolder(val binding: TodoLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ListOfToDoAdapter.ViewHolder {
-        val v: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.todo_layout, parent, false)
-        return ViewHolder(v)
+        val binding = TodoLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return toDo.size
+        return todo.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.toDo.text = toDo[position].toString()
+        with(holder) {
+            with(todo[position]) {
+                binding.etDescriptionTODO.text = description
+                binding.etCompletionState.text = completionState.toString()
+                binding.etPeople.text = assignedPeople
+
+            }
+        }
+    }
+
+    fun addToDo(toDo: ToDo) {
+        todo.add(toDo)
+        notifyItemInserted(todo.size - 1)
     }
 
 }
