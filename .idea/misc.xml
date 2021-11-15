@@ -3,17 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/drawable/border.xml" value="0.3828125" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/drawable/ic_splash_screen.xml" value="0.3828125" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/layout/activity_list_of_to_dos.xml" value="0.33" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/layout/add_list_view.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/layout/add_todo_screen.xml" value="0.25" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/layout/todo_layout.xml" value="0.4114391143911439" />
-        <entry key="..\:/Users/K.E.S/Desktop/AIO/S5/MSU/to-do-list/app/src/main/res/layout/todo_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Laust/Git/to-do-list/app/src/main/res/drawable/border.xml" value="0.3828125" />
         <entry key="..\:/Users/Laust/Git/to-do-list/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Laust/Git/to-do-list/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
@@ -27,6 +16,15 @@
         <entry key="..\:/Users/laust/Documents/GitHub/to-do-list/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/laust/Documents/GitHub/to-do-list/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/laust/Documents/GitHub/to-do-list/app/src/main/res/layout/todo_list.xml" value="0.5" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/drawable/border.xml" value="0.3828125" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/drawable/ic_splash_screen.xml" value="0.3828125" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/drawable/layout_bg.xml" value="0.3828125" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/layout/activity_list_of_to_dos.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/layout/add_list_view.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/layout/todo_layout.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/peter/Desktop/SDU/Semester_5/Mobil_software_udvikling/Project/to-do-list/app/src/main/res/layout/todo_list.xml" value="0.2957427536231884" />
       </map>
     </option>
   </component>
