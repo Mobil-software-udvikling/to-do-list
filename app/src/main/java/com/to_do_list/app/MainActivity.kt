@@ -97,6 +97,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         getResult.launch(intent)
     }
 
+    //When app is resumed, reload the data to be sure we always have the newest updates from database
+    override fun onResume() {
+        if (!loadThread.isAlive) {
+            loadThread = LoadThread()
+            loadThread.start()
+        }
+        super.onResume()
+    }
+
     fun loadListsFromDatabase(){
         //Clear all the data from the list
         toDoList.clear()
@@ -111,6 +120,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             loadListsFromDatabase()
         }
     }
+
     //Thread for handling the insert and afterwards reload the ToDoLists shown in the RecyclerView
     inner class AddListAndReloadThread(private val toDoList : ToDoList?) : Thread() {
         override fun run(){
@@ -123,5 +133,4 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             loadThread.start()
         }
     }
-
 }
