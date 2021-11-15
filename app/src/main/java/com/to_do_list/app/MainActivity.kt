@@ -36,12 +36,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     ) {
         //Only if the result code is ok, we add the list to ToDoLists
         if (it.resultCode == Activity.RESULT_OK) {
+            //Get the data from intent
             val value = it.data?.getStringExtra("ListName")
-            //toDoList.add(ToDoList(0, value!!, ""))
-            toDoListDatabase.ToDoListDao().insert(ToDoList(0, value!!, ""))
 
-            //start the loadThread to load from database in seperate thread
-            loadThread.start()
+            val newList = ToDoList(0, value!!, "")
+            //Instatiate new thread for inserting the added list to the database and reload the data from database
+            val addListThread  = AddListAndReloadThread(newList)
+            addListThread.start()
         }
     }
 
@@ -73,6 +74,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         //Load saved lists from databse
         //start the loadThread to load from database in seperate thread
+        Log.i("ThreadStatus", loadThread.isAlive.toString())
         loadThread.start()
     }
 
@@ -102,11 +104,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         toDoList.addAll(toDoListDatabase.ToDoListDao().getAll())
     }
 
-
+    //therad for handling loading from database
     inner class LoadThread : Thread() {
         override fun run() {
             Log.i("db", "Database thread started")
             loadListsFromDatabase()
+        }
+    }
+    //Thread for handling the insert and afterwards reload the ToDoLists shown in the RecyclerView
+    inner class AddListAndReloadThread(private val toDoList : ToDoList?) : Thread() {
+        override fun run(){
+            //We can only insert if the parsed data is not null
+            if (toDoList != null) {
+                toDoListDatabase.ToDoListDao().insert(toDoList)
+            }
+            //Reload the data by starting a new thread to load from database
+            loadThread = LoadThread()
+            loadThread.start()
         }
     }
 
