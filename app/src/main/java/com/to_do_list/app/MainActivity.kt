@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
     override fun onListClickListener(data: ToDoList) {
         val intent = Intent(this, ListOfToDos::class.java)
         intent.putExtra("ListName", data.listName)
+        //TODO put extra intent with the clicked lists ID(Missing in dataclass and comes with merge) 
         startActivity(intent)
     }
 }
