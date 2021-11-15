@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var toDoListDatabase : TodoListDatabse
 
-
+    private var loadThread : LoadThread = LoadThread()
 
     //Listens for added results from other activites
     private val getResult = registerForActivityResult(
@@ -39,8 +39,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val value = it.data?.getStringExtra("ListName")
             //toDoList.add(ToDoList(0, value!!, ""))
             toDoListDatabase.ToDoListDao().insert(ToDoList(0, value!!, ""))
-            //Rewrite the list with the newly added toDoList
-            loadListsFromDatabase()
+
+            //start the loadThread to load from database in seperate thread
+            loadThread.start()
         }
     }
 
@@ -71,7 +72,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
 
         //Load saved lists from databse
-        loadListsFromDatabase()
+        //start the loadThread to load from database in seperate thread
+        loadThread.start()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -99,4 +101,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //Get all list from databse and add them to the list
         toDoList.addAll(toDoListDatabase.ToDoListDao().getAll())
     }
+
+
+    inner class LoadThread : Thread() {
+        override fun run() {
+            Log.i("db", "Database thread started")
+            loadListsFromDatabase()
+        }
+    }
+
 }
