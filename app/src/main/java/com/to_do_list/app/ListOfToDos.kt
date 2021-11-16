@@ -2,10 +2,12 @@ package com.to_do_list.app
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -22,6 +24,19 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener {
             val description = it.data?.getStringExtra("EXTRA_DESCRIPTION")
             val completionState = it.data?.getIntExtra("EXTRA_COMPLETIONSTATE", 0)
             val people = it.data?.getStringExtra("EXTRA_PEOPLE")
+            val colourCircle = ContextCompat.getDrawable(this, R.drawable.circle_to_do)
+
+            if (completionState == 1) {
+                if (colourCircle != null) {
+                    colourCircle.setTint(Color.YELLOW)
+                }
+            }
+
+            if (completionState == 2) {
+                if (colourCircle != null) {
+                    colourCircle.setTint(Color.RED)
+                }
+            }
 
             listOfToDo.add(ToDo(description!!, completionState!!, people!!))
         }
