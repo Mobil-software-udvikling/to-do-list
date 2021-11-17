@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.TextView
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +46,15 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_of_to_dos)
+
+        //get passed listName from intent
+        val listName : String? = intent.getStringExtra("ListName")
+
+        //get the Headers text field
+        val headerText : TextView = findViewById(R.id.titleOfList)
+
+        //Set the textFields text to the retrieved listName
+        headerText.text = listName
 
         rvTodo = findViewById(R.id.rvToDos)
         rvTodo!!.layoutManager = LinearLayoutManager(this)
