@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListener {
 
     private var rView: RecyclerView? = null
 
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+
         val drawer = findViewById<DrawerLayout>(R.id.drawer)
         val drawerToggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(drawerToggle)
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         
-        toDoListAdapter = ToDoListAdapter(toDoList)
+        toDoListAdapter = ToDoListAdapter(toDoList, this)
 
         rView = findViewById(R.id.rv_list)
         rView!!.adapter = toDoListAdapter
@@ -76,5 +77,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //Create a new intent to handle data to and from activities
         val intent = Intent(this, AddToDoLIstActivity::class.java)
         getResult.launch(intent)
+    }
+
+    override fun onListClickListener(data: ToDoList) {
+        val intent = Intent(this, ListOfToDos::class.java)
+        intent.putExtra("ListName", data.listName)
+        //TODO put extra intent with the clicked lists ID(Missing in dataclass and comes with merge) 
+        startActivity(intent)
     }
 }

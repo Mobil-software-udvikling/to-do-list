@@ -11,19 +11,25 @@
         android:theme="@style/Theme.Todolist">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:label="Main" />
         <activity
             android:name=".AddToDoLIstActivity"
-            android:exported="true"
-            >
+            android:exported="true" />
+        <activity
+            android:name=".ListOfToDos"
+            android:exported="true" />
 
-
+        <activity
+            android:name=".AddToDO"
+            android:exported="true"/>
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
