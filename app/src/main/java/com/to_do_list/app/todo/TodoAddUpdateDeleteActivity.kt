@@ -1,5 +1,6 @@
 package com.to_do_list.app.todo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,32 +9,26 @@ import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
 import com.to_do_list.app.R
-import com.to_do_list.app.TodoArrayClass
 
 class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
+    private var todoLastInsertedId: Int=0
     private lateinit var deleteButton: Button
     private lateinit var updateButton: Button
     private lateinit var saveButton: Button
-    private var assignedPeople: String = ""
-    private var completionState: Int = 0
-    private lateinit var description: String
-    private var topic: String? = ""
     private lateinit var cbDone: CheckBox
     private lateinit var etPeople: EditText
     private lateinit var etTodoText: EditText
+    private lateinit var todoModel: ToDo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_add_update_delete)
 
-        if (intent.hasExtra("Topic"))
-            topic = intent.getStringExtra("Topic")
-        if (intent.hasExtra("description"))
-            description = intent.getStringExtra("description")!!
-        if (intent.hasExtra("completionState"))
-            completionState = intent.getIntExtra("completionState", 0)
-        if (intent.hasExtra("assignedPeople"))
-            assignedPeople = intent.getStringExtra("assignedPeople")!!
+        if (intent.hasExtra("todoModel"))
+            todoModel = intent.getParcelableExtra<ToDo>("todoModel")!!
+
+        if (intent.hasExtra("todoLastInsertedId"))
+            todoLastInsertedId = intent.getIntExtra("todoLastInsertedId",0)
 
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         toolbar.setTitle("Add Update Todo")
@@ -48,21 +43,17 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
         deleteButton = findViewById(R.id.btnDelete)
         deleteButton.setOnClickListener(this)
 
-        if (intent.hasExtra("description")) {
-            etTodoText.setText(description)
-            etPeople.setText(assignedPeople)
-            cbDone.isChecked = if (completionState == 1) true else false
-            etPeople.isClickable= true
-            etPeople.isEnabled = true
-            etTodoText.isClickable = true
-            etTodoText.isEnabled = true
-            saveButton.isClickable = true
-            saveButton.isEnabled = true
+        if (intent.hasExtra("todoModel")) {
+            etTodoText.setText(todoModel.description)
+            etPeople.setText(todoModel.assignedPeople)
+            cbDone.isChecked = if (todoModel.completionState == 1) true else false
+            saveButton.isClickable = false
+            saveButton.isEnabled = false
         } else {
-            updateButton.isClickable = true
-            updateButton.isEnabled = true
-            deleteButton.isClickable = true
-            deleteButton.isEnabled = true
+            updateButton.isClickable = false
+            updateButton.isEnabled = false
+            deleteButton.isClickable = false
+            deleteButton.isEnabled = false
         }
 
 
@@ -70,8 +61,34 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
 
     //Method for handling clicks on add new List view
     override fun onClick(p0: View?) {
-
         if (p0!!.id == R.id.btnSave) {
+            val description = etTodoText.text.toString()
+            val people = etPeople.text.toString()
+            val isDone = if (cbDone.isChecked) 1 else 0
+            val todo = ToDo(todoLastInsertedId+1,description, isDone, people)
+            val insertIntent = Intent()
+            insertIntent.putExtra("todoModel",todo)
+            setResult(RESULT_OK,insertIntent)
+        }
+        if (p0.id == R.id.btnUpdate) {
+            val description = etTodoText.text.toString()
+            val people = etPeople.text.toString()
+            val isDone = if (cbDone.isChecked) 1 else 0
+            val todo = ToDo(todoModel.todoId,description, isDone, people)
+            val updateIntent = Intent()
+            updateIntent.putExtra("todoModelUpdate",todo)
+            setResult(RESULT_OK,updateIntent)
+        }
+        if (p0.id == R.id.btnDelete) {
+            val description = etTodoText.text.toString()
+            val people = etPeople.text.toString()
+            val isDone = if (cbDone.isChecked) 1 else 0
+            val todo = ToDo(todoModel.todoId,description, isDone, people)
+            val deleteIntent = Intent()
+            deleteIntent.putExtra("todoModelDelete",todo)
+            setResult(RESULT_OK,deleteIntent)
+        }
+        /*if (p0!!.id == R.id.btnSave) {
             val description = etTodoText.text.toString()
             val people = etPeople.text.toString()
             val isDone = if (cbDone.isChecked) 1 else 0
@@ -129,8 +146,8 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
                     TodoArrayClass.getTodoTopicList().add(todoTopic)
                     break
                 }
-            }
+            }*/
             finish()
-        }
+
     }
 }

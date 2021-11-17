@@ -13,14 +13,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.to_do_list.app.R
-import com.to_do_list.app.TodoArrayClass
+import com.to_do_list.app.todo.ToDo
+import com.to_do_list.app.todo.TodoListActivity
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rView: RecyclerView? = null
 
-    private  var toDoTopic: MutableList<ToDoTopic> = ArrayList()
+    private var toDoTopicList: MutableList<ToDoTopic> = ArrayList()
     private lateinit var toDoTopicAdapter: ToDoTopicAdapter
 
 
@@ -30,10 +31,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     ) {
         //Only if the result code is ok, we add the list to ToDoLists
         if (it.resultCode == Activity.RESULT_OK) {
-            //val value = it.data?.getStringExtra("ListName")
-            //toDoList.add(ToDoList(ArrayList(), value!!, ArrayList()))
-            toDoTopic.clear()
-            toDoTopic.addAll(TodoArrayClass.getTodoTopicList())
+            if (it.data?.hasExtra("ListName")!!) {
+                val value = it.data?.getStringExtra("ListName")
+                toDoTopicList.add(ToDoTopic(ArrayList(), value!!, ArrayList()))
+            } else if (it.data?.hasExtra("todoList")!!) {
+                val value = it.data?.getParcelableArrayListExtra<ToDo>("todoList")
+                val topicName = it.data?.getStringExtra("topicName")
+                for (i in 0..toDoTopicList.size - 1) {
+                    if (toDoTopicList.get(i).topicName.equals(topicName)) {
+                        val todoTopic = toDoTopicList.get(i)
+                        toDoTopicList.remove(todoTopic)
+                        todoTopic.todoArrayList.clear()
+                        todoTopic.todoArrayList.addAll(value!!)
+                        toDoTopicList.add(todoTopic)
+                        break
+                    }
+                }
+            }
             rView!!.adapter!!.notifyDataSetChanged()
         }
     }
@@ -50,8 +64,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         drawerToggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        
-        toDoTopicAdapter = ToDoTopicAdapter(this,toDoTopic)
+
+        toDoTopicAdapter = ToDoTopicAdapter(this, toDoTopicList)
 
         rView = findViewById(R.id.rv_list)
         rView!!.adapter = toDoTopicAdapter
@@ -80,6 +94,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         //Create a new intent to handle data to and from activities
         val intent = Intent(this, AddToDoTopicActivity::class.java)
+        getResult.launch(intent)
+    }
+
+    fun todoTopicItemClick(topic: ToDoTopic) {
+        val intent = Intent(this, TodoListActivity::class.java)
+        intent.putExtra("topicModel", topic)
+        intent.putParcelableArrayListExtra("todoList", topic.todoArrayList)
         getResult.launch(intent)
     }
 }

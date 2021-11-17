@@ -1,13 +1,12 @@
 package com.to_do_list.app.todo
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.to_do_list.app.R
 import com.to_do_list.app.databinding.TodoListBinding
 
-class TodoAdapter(val mainActivity: TodoListActivity, private val todoList: MutableList<ToDo>) :
+class TodoAdapter(val mainActivity: TodoListActivity, private val todoList: ArrayList<ToDo>) :
     RecyclerView.Adapter<TodoAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,22 +26,16 @@ class TodoAdapter(val mainActivity: TodoListActivity, private val todoList: Muta
                 }
 
                 binding.mainLayout.setOnClickListener {
-                    if (completionState == 0) {
-                        val intent = Intent(mainActivity, TodoAddUpdateDeleteActivity::class.java)
-                        intent.putExtra("Topic", mainActivity.todoTitle)
-                        intent.putExtra("assignedPeople", todoList[position].assignedPeople)
-                        intent.putExtra("completionState", todoList[position].completionState)
-                        intent.putExtra("description", todoList[position].description)
-                        mainActivity.startActivity(intent)
-                    }
+                        mainActivity.itemClicked(todoList[position])
                 }
             }
         }
 
     }
+
     override fun getItemCount(): Int {
         return todoList.size
     }
-    
+
     inner class ViewHolder(val binding: TodoListBinding) : RecyclerView.ViewHolder(binding.root)
 }

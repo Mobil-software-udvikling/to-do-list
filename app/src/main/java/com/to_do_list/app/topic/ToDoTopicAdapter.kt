@@ -1,10 +1,8 @@
 package com.to_do_list.app.topic
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.to_do_list.app.todo.TodoListActivity
 import com.to_do_list.app.databinding.TodoListBinding
 
 class ToDoTopicAdapter(val mainActivity: MainActivity, private val toDoTopics: MutableList<ToDoTopic>) :
@@ -22,9 +20,7 @@ class ToDoTopicAdapter(val mainActivity: MainActivity, private val toDoTopics: M
                 binding.tvListName.text = topicName
 
                 binding.mainLayout.setOnClickListener {
-                    val intent = Intent(mainActivity, TodoListActivity::class.java)
-                    intent.putExtra("Title",topicName)
-                    mainActivity.startActivity(intent)
+                    mainActivity.todoTopicItemClick(toDoTopics[position])
                 }
             }
         }

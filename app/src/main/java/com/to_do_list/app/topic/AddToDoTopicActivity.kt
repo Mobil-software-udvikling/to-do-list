@@ -6,7 +6,6 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.to_do_list.app.R
-import com.to_do_list.app.TodoArrayClass
 
 class AddToDoTopicActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -23,9 +22,9 @@ class AddToDoTopicActivity : AppCompatActivity(), View.OnClickListener {
         //extract the inputed text
         val name: String = listName.text.toString()
         val todoList= ToDoTopic(ArrayList(),name, ArrayList())
-        TodoArrayClass.addNewTodoTopic(todoList)
+//        TodoArrayClass.addNewTodoTopic(todoList)
         //Put the extracted name in the intent
-        //intent.putExtra("ListName", name)
+        intent.putExtra("ListName", name)
         //Set the result as OK to invoke it in mainActivity
         setResult(RESULT_OK, intent)
         finish()
