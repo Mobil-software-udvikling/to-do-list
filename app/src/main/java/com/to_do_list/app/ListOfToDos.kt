@@ -39,7 +39,7 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener {
                 }
             }
 
-            listOfToDo.add(ToDo(description!!, completionState!!, people!!))
+            listOfToDo.add(ToDo(0, description!!, completionState!!, people!!))
         }
     }
 
