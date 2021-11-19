@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         if (it.resultCode == Activity.RESULT_OK) {
             //Get the data from intent
             val value = it.data?.getStringExtra("ListName")
-
             val newList = ToDoList(0, value!!, "")
+
             //Instatiate new thread for inserting the added list to the database and reload the data from database
             val addListThread  = AddListAndReloadThread(newList)
             addListThread.start()
@@ -73,9 +73,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         //Room
         toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
 
-        //Load saved lists from databse
         //start the loadThread to load from database in seperate thread
-        Log.i("ThreadStatus", loadThread.isAlive.toString())
         loadThread.start()
     }
 
@@ -116,7 +114,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
     override fun onListClickListener(data: ToDoList) {
         val intent = Intent(this, ListOfToDos::class.java)
         intent.putExtra("ListName", data.listName)
-        //TODO put extra intent with the clicked lists ID(Missing in dataclass and comes with merge) 
+        intent.putExtra("ListID", data.id)
         startActivity(intent)
     }
 

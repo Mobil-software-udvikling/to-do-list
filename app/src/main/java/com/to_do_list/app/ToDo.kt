@@ -27,14 +27,16 @@ data class ToDo(
         parcel.readInt(),
         parcel.readString()!!,
         parcel.readInt(),
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(todoId)
+        parcel.writeInt(id)
         parcel.writeString(description)
         parcel.writeInt(completionState)
         parcel.writeString(assignedPeople)
+        parcel.writeInt(list)
     }
 
     override fun describeContents(): Int {
