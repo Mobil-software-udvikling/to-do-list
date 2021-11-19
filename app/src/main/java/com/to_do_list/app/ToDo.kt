@@ -4,10 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class ToDo(
-    val todoId: Int = 0,
-    val description: String,
-    val completionState: Int = 0,
-    val assignedPeople: String
+    var todoId: Int = 0,
+    var description: String,
+    var completionState: Int = 0,
+    var assignedPeople: String
     )
     : Parcelable {
     constructor(parcel: Parcel) : this(

@@ -1,14 +1,18 @@
 package com.to_do_list.app
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.to_do_list.app.databinding.TodoLayoutBinding
 
-class ListOfToDoAdapter(private var todo: MutableList<ToDo>) :
+class ListOfToDoAdapter(private var todo: MutableList<ToDo>, private var itemClickListener: ToDoListClickListener) :
     RecyclerView.Adapter<ListOfToDoAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: TodoLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: TodoLayoutBinding) : RecyclerView.ViewHolder(binding.root){}
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,10 +30,12 @@ class ListOfToDoAdapter(private var todo: MutableList<ToDo>) :
         with(holder) {
             with(todo[position]) {
                 binding.etDescriptionTODO.text = description
-                binding.etCompletionState.text = completionState.toString()
                 binding.etPeople.text = assignedPeople
-
+                binding.etCompletionState.text = completionState.toString()
             }
+        }
+        holder.itemView.setOnClickListener {
+            itemClickListener.onListClickListener(todo[position])
         }
     }
 

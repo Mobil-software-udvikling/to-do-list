@@ -12,13 +12,12 @@ class AddToDO : AppCompatActivity() {
 
         val radioGroup: RadioGroup = findViewById(R.id.ad_radioGROUP)
 
-        val button: Button = findViewById(R.id.btnApply) as Button
+        val button: Button = findViewById(R.id.btnApply)
 
         button.setOnClickListener {
 
             val description: EditText = findViewById(R.id.ad_Description)
             val people: EditText = findViewById(R.id.ad_People)
-
             var completionState: Int = 0
             val radioId = radioGroup.checkedRadioButtonId
 
@@ -45,6 +44,7 @@ class AddToDO : AppCompatActivity() {
                     intent.putExtra("EXTRA_DESCRIPTION", description.text.toString())
                     intent.putExtra("EXTRA_COMPLETIONSTATE", completionState)
                     intent.putExtra("EXTRA_PEOPLE", people.text.toString())
+                    intent.putExtra("ADD_EXTRA_INTENT", "ADDTODO")
                     setResult(RESULT_OK, intent)
                     finish()
                 }

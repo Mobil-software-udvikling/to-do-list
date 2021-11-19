@@ -19,7 +19,9 @@
         <activity
             android:name=".ListOfToDos"
             android:exported="true" />
-
+        <activity
+            android:name=".TodoAddUpdateDeleteActivity"
+            android:exported="true" />
         <activity
             android:name=".AddToDO"
             android:exported="true"/>
