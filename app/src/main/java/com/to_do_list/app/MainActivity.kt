@@ -139,13 +139,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
 
     //When app is resumed, reload the data to be sure we always have the newest updates from database
     override fun onResume() {
-        /*
-        if (!loadThread.isAlive) {
-            loadThread = LoadThread()
-            loadThread.start()
-        }
-
-         */
+        toDoList.clear()
+        Thread.sleep(200)
+        startLoadThread()
         super.onResume()
     }
 
@@ -188,7 +184,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
             if (toDoList != null) {
                 toDoListDatabase.ToDoListDao().update(toDoList)
             }
-            startLoadThread()
+            //startLoadThread()
         }
     }
 
@@ -199,7 +195,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
             if (toDoList != null) {
                 toDoListDatabase.ToDoListDao().insert(toDoList)
             }
-            startLoadThread()
+            //startLoadThread()
         }
     }
 
@@ -208,7 +204,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
             if(toDoList != null) {
                 toDoListDatabase.ToDoListDao().delete(toDoList)
             }
-            startLoadThread()
+            //startLoadThread()
         }
     }
 
