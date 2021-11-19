@@ -13,10 +13,10 @@ class EditDeleteToDoListActivity : AppCompatActivity(){
         setContentView(R.layout.edit_delete_list_view)
 
         val clickedListName : String? = intent.getStringExtra("ListName")
-
         val textInput : TextInputEditText = findViewById(R.id.listNameFieldEditDelete)
-
         textInput.setText(clickedListName)
+
+        //TODO extract extra with the lists clicked ID
 
         val updateButton : Button = findViewById(R.id.UpdateButton)
         updateButton.setOnClickListener {
