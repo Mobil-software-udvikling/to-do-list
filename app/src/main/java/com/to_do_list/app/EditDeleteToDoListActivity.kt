@@ -1,6 +1,7 @@
 package com.to_do_list.app
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,8 @@ class EditDeleteToDoListActivity : AppCompatActivity(){
         val textInput : TextInputEditText = findViewById(R.id.listNameFieldEditDelete)
         textInput.setText(clickedListName)
 
-        //TODO extract extra with the lists clicked ID
+       val clickedListID : Int? = intent.getIntExtra("ListID", -1)
+
 
         val updateButton : Button = findViewById(R.id.UpdateButton)
         updateButton.setOnClickListener {
@@ -25,16 +27,18 @@ class EditDeleteToDoListActivity : AppCompatActivity(){
             //Extract the updated name
             val name : String = textInput.text.toString()
             intent.putExtra("UpdatedListName", name)
-            //TODO: add extra with the id so mainActivity know which list to update
+            intent.putExtra("ListID", clickedListID)
             setResult(RESULT_OK, intent)
             finish()
         }
 
         val deleteButton : Button = findViewById(R.id.deleteButton)
         deleteButton.setOnClickListener {
-            //TODO: add extra with the id so mainActivity know which list to delete
             //Add extra named "delete" so mainActivity can react to it
             intent.putExtra("delete", true)
+            val name : String = textInput.text.toString()
+            intent.putExtra("DeleteListName", name)
+            intent.putExtra("ListID", clickedListID)
             setResult(RESULT_OK, intent)
             finish()
         }
