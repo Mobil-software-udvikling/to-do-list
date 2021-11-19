@@ -14,7 +14,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-//TODO: Make comments
 /**
  * @author Nichlas Daniel Boraso(nibor19)
  * @author Laust Christensen(lauch19)
@@ -59,7 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
                 } else {
                     //Extract the name
                     val newName = it.data?.getStringExtra("UpdatedListName")
-                    val updatedToDoList =  ToDoList(ID!!, newName!!,  "")
+                    val updatedToDoList = ToDoList(ID!!, newName!!, "")
 
                     //Start a new update and reload thread
                     val updateListThread = UpdateListAndReloadThread(updatedToDoList)
@@ -68,10 +67,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
                     rView?.adapter?.notifyDataSetChanged()
                 }
 
-            } else if(it.data?.hasExtra("delete")!!){
+            } else if (it.data?.hasExtra("delete")!!) {
                 if (ID == -1) {
                     Log.i("DeleteError", "Something went wrong in the deletion")
-                } else{
+                } else {
                     //extract the name of the list to delete
                     val deleteName = it.data?.getStringExtra("DeleteListName")
                     val deleteToDoList = ToDoList(ID!!, deleteName!!, "")
@@ -150,8 +149,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         toDoList.clear()
         //Get all list from databse and add them to the list
         toDoList.addAll(toDoListDatabase.ToDoListDao().getAll())
-
-        Log.i("ToDoLength", toDoList.size.toString())
     }
 
     override fun onListClickListener(data: ToDoList) {
@@ -184,7 +181,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
             if (toDoList != null) {
                 toDoListDatabase.ToDoListDao().update(toDoList)
             }
-            //startLoadThread()
         }
     }
 
@@ -195,16 +191,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
             if (toDoList != null) {
                 toDoListDatabase.ToDoListDao().insert(toDoList)
             }
-            //startLoadThread()
         }
     }
 
-    inner class DeleteAndReloadThread(private val toDoList : ToDoList?) : Thread() {
-        override fun run(){
-            if(toDoList != null) {
+    inner class DeleteAndReloadThread(private val toDoList: ToDoList?) : Thread() {
+        override fun run() {
+            if (toDoList != null) {
                 toDoListDatabase.ToDoListDao().delete(toDoList)
             }
-            //startLoadThread()
         }
     }
 
