@@ -64,7 +64,7 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
             val description = etTodoText.text.toString()
             val people = etPeople.text.toString()
             val isDone = if (cbDone.isChecked) 1 else 0
-            val todo = ToDo(todoLastInsertedId+1,description, isDone, people)
+            val todo = ToDo(todoLastInsertedId+1,description, isDone, people, 0)
             val insertIntent = Intent()
             insertIntent.putExtra("todoModel",todo)
             setResult(RESULT_OK,insertIntent)
@@ -73,7 +73,7 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
             val description = etTodoText.text.toString()
             val people = etPeople.text.toString()
             val isDone = if (cbDone.isChecked) 1 else 0
-            val todo = ToDo(todoModel.todoId,description, isDone, people)
+            val todo = ToDo(todoModel.id,description, isDone, people, 0)
             val updateIntent = Intent()
             updateIntent.putExtra("todoModelUpdate",todo)
             setResult(RESULT_OK,updateIntent)
@@ -82,7 +82,7 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
             val description = etTodoText.text.toString()
             val people = etPeople.text.toString()
             val isDone = if (cbDone.isChecked) 1 else 0
-            val todo = ToDo(todoModel.todoId,description, isDone, people)
+            val todo = ToDo(todoModel.id,description, isDone, people, 0)
             val deleteIntent = Intent()
             deleteIntent.putExtra("todoModelDelete",todo)
             setResult(RESULT_OK,deleteIntent)

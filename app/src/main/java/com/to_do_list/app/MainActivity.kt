@@ -3,6 +3,7 @@ package com.to_do_list.app
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,7 +14,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
+//TODO: Make comments
+/**
+ * @author Nichlas Daniel Boraso(nibor19)
+ * @author Laust Christensen(lauch19)
+ */
 class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListener {
 
     private var rView: RecyclerView? = null
@@ -21,6 +26,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
     private  var toDoList: MutableList<ToDoList> = ArrayList()
     private lateinit var toDoListAdapter: ToDoListAdapter
 
+    private lateinit var toDoListDatabase : TodoListDatabse
+
+    private var loadThread : LoadThread = LoadThread()
 
     //Listens for added results from other activites
     private val getResult = registerForActivityResult(
@@ -28,11 +36,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
     ) {
         //Only if the result code is ok, we add the list to ToDoLists
         if (it.resultCode == Activity.RESULT_OK) {
+            //Get the data from intent
             val value = it.data?.getStringExtra("ListName")
-            toDoList.add(ToDoList(ArrayList(), value!!, ArrayList()))
+            val newList = ToDoList(0, value!!, "")
+
+            //Instatiate new thread for inserting the added list to the database and reload the data from database
+            val addListThread  = AddListAndReloadThread(newList)
+            addListThread.start()
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +70,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         val button: View = findViewById(R.id.floatingActionButton)
         button.setOnClickListener(this)
 
+        //Room
+        toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
+
+        //start the loadThread to load from database in seperate thread
+        loadThread.start()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -79,10 +96,46 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         getResult.launch(intent)
     }
 
+    //When app is resumed, reload the data to be sure we always have the newest updates from database
+    override fun onResume() {
+        if (!loadThread.isAlive) {
+            loadThread = LoadThread()
+            loadThread.start()
+        }
+        super.onResume()
+    }
+
+    fun loadListsFromDatabase(){
+        //Clear all the data from the list
+        toDoList.clear()
+        //Get all list from databse and add them to the list
+        toDoList.addAll(toDoListDatabase.ToDoListDao().getAll())
+    }
     override fun onListClickListener(data: ToDoList) {
         val intent = Intent(this, ListOfToDos::class.java)
         intent.putExtra("ListName", data.listName)
-        //TODO put extra intent with the clicked lists ID(Missing in dataclass and comes with merge) 
+        intent.putExtra("ListID", data.id)
         startActivity(intent)
+    }
+
+    //therad for handling loading from database
+    inner class LoadThread : Thread() {
+        override fun run() {
+            Log.i("db", "Database thread started")
+            loadListsFromDatabase()
+        }
+    }
+
+    //Thread for handling the insert and afterwards reload the ToDoLists shown in the RecyclerView
+    inner class AddListAndReloadThread(private val toDoList : ToDoList?) : Thread() {
+        override fun run(){
+            //We can only insert if the parsed data is not null
+            if (toDoList != null) {
+                toDoListDatabase.ToDoListDao().insert(toDoList)
+            }
+            //Reload the data by starting a new thread to load from database
+            loadThread = LoadThread()
+            loadThread.start()
+        }
     }
 }

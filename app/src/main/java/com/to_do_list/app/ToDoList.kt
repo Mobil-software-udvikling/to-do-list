@@ -1,5 +1,16 @@
 package com.to_do_list.app
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+/**
+ * @author Nichlas Daniel Boraso(nibor19)
+ * @author Laust Christensen(lauch19)
+ */
+@Entity
 data class ToDoList(
-    val toDos: ArrayList<ToDo>, val listName: String, val collaborators: ArrayList<String>
-)
+    @PrimaryKey(autoGenerate = true)
+    val id : Int,
+    val listName: String,
+    val collaborators: String
+    )
