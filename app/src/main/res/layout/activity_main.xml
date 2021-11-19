@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
-    tools:context=".topic.MainActivity">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".topic.MainActivity">
+            tools:context=".MainActivity">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

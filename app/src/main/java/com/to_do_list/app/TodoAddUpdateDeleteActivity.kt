@@ -1,4 +1,4 @@
-package com.to_do_list.app.todo
+package com.to_do_list.app
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
-import com.to_do_list.app.R
 
 class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
     private var todoLastInsertedId: Int=0

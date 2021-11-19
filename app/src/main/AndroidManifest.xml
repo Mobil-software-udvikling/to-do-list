@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Todolist">
         <activity
-            android:name=".todo.TodoAddUpdateDeleteActivity"
+            android:name=".TodoAddUpdateDeleteActivity"
             android:exported="false" />
         <activity
-            android:name=".topic.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".topic.AddToDoTopicActivity"
+            android:name=".AddToDoTopicActivity"
             android:exported="false"/>
         <activity
-            android:name=".todo.TodoListActivity"
+            android:name=".TodoListActivity"
             android:exported="false"/>
     </application>
 
