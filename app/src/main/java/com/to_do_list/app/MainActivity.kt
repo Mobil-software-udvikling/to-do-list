@@ -46,6 +46,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         }
     }
 
+    private val getResultFromEditUpdate = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        if(it.resultCode == Activity.RESULT_OK){
+            if(it.data?.hasExtra("update")!!){
+                //TODO: implement update of that ToDoList(Look at intent extra ID)
+                Log.i("updateButton", "update pressed")
+            }else{
+                //TODO: Implement delete of that ToDoList
+                Log.i("deleteButton", "delete pressed")
+            }
+        }
+    }
+
+
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -119,7 +138,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
     }
 
     override fun onListLongClickListener(data: ToDoList) {
-        Log.i("longClick", "clicked")
+        val intent = Intent(this, EditDeleteToDoListActivity::class.java)
+        intent.putExtra("ListName", data.listName)
+        //TODO: Add extra with the ID so it's reachable from the intent
+        getResultFromEditUpdate.launch(intent)
     }
 
     //therad for handling loading from database
