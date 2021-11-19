@@ -118,6 +118,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         startActivity(intent)
     }
 
+    override fun onListLongClickListener(data: ToDoList) {
+        Log.i("longClick", "clicked")
+    }
+
     //therad for handling loading from database
     inner class LoadThread : Thread() {
         override fun run() {
