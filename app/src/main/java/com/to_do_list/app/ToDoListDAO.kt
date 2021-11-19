@@ -1,9 +1,6 @@
 package com.to_do_list.app
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 
 /**
@@ -12,6 +9,10 @@ import androidx.room.Query
  */
 @Dao
 interface ToDoListDAO {
+
+    @Query("SELECT * FROM ToDoList WHERE :id = id")
+    fun getToDoList(id: Int) : ToDoList
+
     @Query("SELECT * FROM ToDoList")
     fun getAll(): MutableList<ToDoList>
 
@@ -20,4 +21,8 @@ interface ToDoListDAO {
 
     @Delete
     fun delete(toDoList: ToDoList)
+
+    @Update
+    fun update(toDoList: ToDoList)
+
 }
