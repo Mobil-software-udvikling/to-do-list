@@ -14,14 +14,14 @@
             android:title="@string/menu_settings" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Collaboration">
         <menu>
+            <item
+                android:id="@+id/nav_send"
+                android:title="@string/menu_login" />
             <item
                 android:id="@+id/nav_share"
                 android:title="@string/menu_share" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="@string/menu_send" />
         </menu>
     </item>
 </menu>

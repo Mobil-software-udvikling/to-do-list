@@ -23,6 +23,7 @@ class EditDeleteToDoListActivity : AppCompatActivity() {
         val clickedListID: Int? = intent.getIntExtra("ListID", -1)
 
         val updateButton: Button = findViewById(R.id.UpdateButton)
+        //TODO: fix code duplicates
         updateButton.setOnClickListener {
             //Add extra named "update" so mainActivity can react to it
             intent.putExtra("update", true)
