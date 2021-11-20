@@ -19,6 +19,8 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
 
     private var rvTodo: RecyclerView? = null
     var listOfToDo = mutableListOf<ToDo>()
+    var id: Int = -1
+    var colorCircle: Drawable? = null
 
     private lateinit var toDoListDatabase: TodoListDatabse
 
@@ -43,6 +45,31 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
                         AddTodoThread(ToDo(0, description!!, completionState!!, people!! ,listId!!))
                     addToDoThread.start()
                 }
+
+                if (completionState == 2) {
+                    if (colorCircle != null) {
+                        colorCircle!!.setTint(Color.RED)
+                    }
+                }
+
+                if (completionState == 0) {
+                    if (colorCircle != null) {
+                        colorCircle!!.setTint(Color.GREEN)
+                    }
+                }
+
+                if (listOfToDo.isEmpty()) {
+                    id = -1
+                } else {
+                    id = listOfToDo.size - 1
+                }
+                id++
+
+                listOfToDo.add(ToDo(id, description!!, completionState!!, people!!))
+
+                rvTodo!!.adapter!!.notifyItemInserted(id)
+
+                Log.d("MUTUABLELISTINDEX0", listOfToDo.toString())
             }
         }
     }
