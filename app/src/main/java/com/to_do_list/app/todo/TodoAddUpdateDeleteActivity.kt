@@ -56,7 +56,6 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
     //Method for handling clicks on add new List view
     override fun onClick(p0: View?) {
         if (p0!!.id == R.id.btnUpdate) {
-
             //ToDOs Descritpiton
             val description = etTodoText.text.toString()
             val people = etPeople.text.toString()
@@ -78,7 +77,7 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
                 when (radioButton.text) {
                     "To do" -> completionState = 2
                     "Doing" -> completionState = 1
-                    "Done"  -> completionState = 0
+                    "Done" -> completionState = 0
                 }
                 intent.putExtra("update_ID", todoID)
                 intent.putExtra("update_Decsription", description)
@@ -105,6 +104,5 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
             setResult(RESULT_OK, intent)
         }
         finish()
-
     }
 }

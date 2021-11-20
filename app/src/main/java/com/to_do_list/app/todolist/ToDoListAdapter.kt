@@ -11,7 +11,10 @@ import com.to_do_list.app.databinding.TodoListBinding
  * @author Nichlas Daniel Boraso(nibor19)
  * @author Laust Christensen(lauch19)
  */
-class ToDoListAdapter(private val toDoLists: MutableList<ToDoList>, private val listClickListener: ListOnClickListener) :
+class ToDoListAdapter(
+    private val toDoLists: MutableList<ToDoList>,
+    private val listClickListener: ListOnClickListener
+) :
     RecyclerView.Adapter<ToDoListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,7 +47,6 @@ class ToDoListAdapter(private val toDoLists: MutableList<ToDoList>, private val 
         toDoLists.add(todoList)
         notifyItemInserted(toDoLists.size - 1)
     }
-
 
     inner class ViewHolder(val binding: TodoListBinding) : RecyclerView.ViewHolder(binding.root)
 }

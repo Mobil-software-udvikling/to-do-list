@@ -151,8 +151,6 @@ class ToDoOverviewActivity : AppCompatActivity(), View.OnClickListener, ToDoClic
         listOfToDo.clear()
         Thread.sleep(200)
         startLoadThread()
-        //Notify RecyclerView about dataUpdates
-        //runOnUiThread(Runnable {})
         super.onResume()
     }
 
@@ -162,13 +160,10 @@ class ToDoOverviewActivity : AppCompatActivity(), View.OnClickListener, ToDoClic
 
         //Get all list from databse and add them to the list
         val listId = intent.getIntExtra("ListID", -1)
-
         if (listId != -1) {
             listOfToDo.addAll(
                 toDoListDatabase.toDoDao().getAll(intent.getIntExtra("ListID", listId))
             )
-
-
         }
     }
 

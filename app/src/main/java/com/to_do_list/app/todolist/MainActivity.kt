@@ -13,7 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.to_do_list.app.*
+import com.to_do_list.app.R
 import com.to_do_list.app.common.entities.ToDoList
 import com.to_do_list.app.common.persistence.ToDoListDatabase
 import com.to_do_list.app.todo.ToDoOverviewActivity
@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
                     val updateListThread = UpdateListAndReloadThread(updatedToDoList)
                     updateListThread.start()
                 }
-
             } else if (it.data?.hasExtra("delete")!!) {
                 if (ID == -1) {
                     Log.i("DeleteError", "Something went wrong in the deletion")
@@ -209,9 +208,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         }
         loadThread = LoadThread()
         loadThread.start()
-
-
     }
-
-
 }
