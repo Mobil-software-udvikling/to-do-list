@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.to_do_list.app.*
 import com.to_do_list.app.common.entities.ToDoList
-import com.to_do_list.app.common.persistence.TodoListDatabse
+import com.to_do_list.app.common.persistence.ToDoListDatabase
 import com.to_do_list.app.todo.ToDoOverviewActivity
 
 /**
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
     private var toDoList: MutableList<ToDoList> = ArrayList()
     private lateinit var toDoListAdapter: ToDoListAdapter
 
-    private lateinit var toDoListDatabase: TodoListDatabse
+    private lateinit var toDoListDatabase: ToDoListDatabase
 
     private var loadThread: LoadThread = LoadThread()
 
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         button.setOnClickListener(this)
 
         //Room
-        toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
+        toDoListDatabase = ToDoListDatabase.getAppDatabse(this)!!
 
         //start the loadThread to load from database in seperate thread
         loadThread.start()

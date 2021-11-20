@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.to_do_list.app.R
 import com.to_do_list.app.common.entities.ToDo
-import com.to_do_list.app.common.persistence.TodoListDatabse
+import com.to_do_list.app.common.persistence.ToDoListDatabase
 
 class ToDoOverviewActivity : AppCompatActivity(), View.OnClickListener, ToDoClickListener {
 
@@ -21,7 +21,7 @@ class ToDoOverviewActivity : AppCompatActivity(), View.OnClickListener, ToDoClic
     var listOfToDo = mutableListOf<ToDo>()
     var id: Int = -1
 
-    private lateinit var toDoListDatabase: TodoListDatabse
+    private lateinit var toDoListDatabase: ToDoListDatabase
 
     private var loadThread: LoadThread = LoadThread()
 
@@ -135,7 +135,7 @@ class ToDoOverviewActivity : AppCompatActivity(), View.OnClickListener, ToDoClic
         button.setOnClickListener(this)
 
         //Room
-        toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
+        toDoListDatabase = ToDoListDatabase.getAppDatabse(this)!!
 
         //start the loadThread to load from database in seperate thread
         loadThread.start()
