@@ -1,6 +1,5 @@
 package com.to_do_list.app
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -58,7 +57,6 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     //Method for handling clicks on add new List view
-
     override fun onClick(p0: View?) {
         if (p0!!.id == R.id.btnUpdate) {
 

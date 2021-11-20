@@ -65,6 +65,7 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
                     val deleteToDoThread = DeleteToDoThread(ToDo(todoId!!, deleteDescription!!, deleteCompleitonState!!, deletePeople!!, listID!!))
                     deleteToDoThread.start()
                 }
+
                 rvTodo!!.adapter!!.notifyDataSetChanged()
             }
 
