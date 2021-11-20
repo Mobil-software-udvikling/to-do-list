@@ -28,6 +28,11 @@ class ToDoListAdapter(private val toDoLists: MutableList<ToDoList>, private val 
         holderList.itemView.setOnClickListener {
             listClickListener.onListClickListener(toDoLists[position])
         }
+
+        holderList.itemView.setOnLongClickListener {
+            listClickListener.onListLongClickListener(toDoLists[position])
+            true
+        }
     }
 
     override fun getItemCount(): Int {
