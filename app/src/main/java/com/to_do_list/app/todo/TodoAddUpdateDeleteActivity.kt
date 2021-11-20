@@ -35,8 +35,8 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         toolbar.title = "Add Update Todo"
 
-        etTodoText = findViewById<EditText>(R.id.etTodoText)
-        etPeople = findViewById<EditText>(R.id.etPeople)
+        etTodoText = findViewById(R.id.etTodoText)
+        etPeople = findViewById(R.id.etPeople)
         updateButton = findViewById(R.id.btnUpdate)
         updateButton.setOnClickListener(this)
         deleteButton = findViewById(R.id.btnDelete)
@@ -75,12 +75,10 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
                 ).show()
             } else {
                 val radioButton: RadioButton = findViewById(radioId)
-                if (radioButton.text.equals("To do")) {
-                    completionState = 2
-                } else if (radioButton.text.equals("Doing")) {
-                    completionState = 1
-                } else if (radioButton.text.equals("Done")) {
-                    completionState = 0
+                when (radioButton.text) {
+                    "To do" -> completionState = 2
+                    "Doing" -> completionState = 1
+                    "Done"  -> completionState = 0
                 }
                 intent.putExtra("update_ID", todoID)
                 intent.putExtra("update_Decsription", description)
