@@ -54,9 +54,17 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
                         colorCircle!!.setTint(Color.GREEN)
                     }
                 }
+
+                if (listOfToDo.isEmpty()) {
+                    id = -1
+                } else {
+                    id = listOfToDo.size - 1
+                }
                 id++
 
                 listOfToDo.add(ToDo(id, description!!, completionState!!, people!!))
+
+                rvTodo!!.adapter!!.notifyItemInserted(id)
 
                 Log.d("MUTUABLELISTINDEX0", listOfToDo.toString())
             }
@@ -71,7 +79,7 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
 
 
             if (it.data?.hasExtra("todoModelDelete")!!) {
-                val updateID = it.data?.getIntExtra("update_ID", 0)
+                val updateID = it.data?.getIntExtra("delete_ID", 0)
                 listOfToDo.removeAt(updateID!!)
 
                 if (listOfToDo.isNotEmpty()) {
@@ -81,6 +89,7 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
                         }
                     }
                 }
+
                 rvTodo!!.adapter!!.notifyDataSetChanged()
                 Log.d("MUTUABLELISTINDEX", listOfToDo.toString())
             }
@@ -92,7 +101,7 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
                 val updatePeople = it.data?.getStringExtra("update_People")
                 val updateCompleitonState = it.data?.getIntExtra("update_CompleitonState", 0)
                 val updateID = it.data?.getIntExtra("update_ID", 0)
-                
+
 
                 if (updateCompleitonState == 1) {
                     if (colorCircle != null) {
@@ -112,7 +121,10 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
                     }
                 }
 
-                listOfToDo.set(updateID!!, ToDo(updateID!!, updateDescription!!, updateCompleitonState!!, updatePeople!!))
+                listOfToDo.set(
+                    updateID!!,
+                    ToDo(updateID!!, updateDescription!!, updateCompleitonState!!, updatePeople!!)
+                )
 
                 rvTodo!!.adapter!!.notifyItemChanged(updateID)
             }
