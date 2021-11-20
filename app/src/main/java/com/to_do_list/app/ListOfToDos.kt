@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.to_do_list.app.common.entities.ToDo
+import com.to_do_list.app.common.persistence.TodoListDatabse
 
 class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickListener {
 
@@ -139,7 +141,7 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
     }
 
     override fun onClick(p0: View?) {
-        val intent = Intent(this, AddToDO::class.java)
+        val intent = Intent(this, AddToDo::class.java)
         getResult.launch(intent)
     }
 

@@ -3,6 +3,7 @@ package com.to_do_list.app
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.to_do_list.app.common.entities.ToDoList
 import com.to_do_list.app.databinding.TodoListBinding
 
 

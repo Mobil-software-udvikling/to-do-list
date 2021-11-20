@@ -27,7 +27,7 @@
             android:name=".TodoAddUpdateDeleteActivity"
             android:exported="true" />
         <activity
-            android:name=".AddToDO"
+            android:name=".AddToDo"
             android:exported="true"/>
         <activity
             android:name=".SplashScreen"

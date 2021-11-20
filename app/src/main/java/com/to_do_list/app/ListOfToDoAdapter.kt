@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.to_do_list.app.common.entities.ToDo
 import com.to_do_list.app.databinding.TodoLayoutBinding
 
 class ListOfToDoAdapter(

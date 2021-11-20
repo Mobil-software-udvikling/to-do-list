@@ -1,9 +1,11 @@
-package com.to_do_list.app
+package com.to_do_list.app.common.persistence
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
+import com.to_do_list.app.common.entities.ToDo
+import com.to_do_list.app.common.entities.ToDoList
 
 
 /**

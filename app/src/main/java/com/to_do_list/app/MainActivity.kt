@@ -13,6 +13,8 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.to_do_list.app.common.entities.ToDoList
+import com.to_do_list.app.common.persistence.TodoListDatabse
 
 /**
  * @author Nichlas Daniel Boraso(nibor19)
