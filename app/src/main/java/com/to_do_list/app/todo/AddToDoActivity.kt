@@ -30,11 +30,11 @@ class AddToDoActivity : AppCompatActivity() {
                 ).show()
             } else {
                 val radioButton: RadioButton = findViewById(radioId)
-                if (radioButton.text.equals("Urgent")) {
+                if (radioButton.text.equals("To do")) {
                     completionState = 2
-                } else if (radioButton.text.equals("Soon")) {
+                } else if (radioButton.text.equals("Doing")) {
                     completionState = 1
-                } else if (radioButton.text.equals("Completeted")) {
+                } else if (radioButton.text.equals("Done")) {
                     completionState = 0
                 }
                 if (description.text.toString().equals("")) {
