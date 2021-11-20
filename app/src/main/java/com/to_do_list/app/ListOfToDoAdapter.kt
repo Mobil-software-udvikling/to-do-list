@@ -35,16 +35,11 @@ class ListOfToDoAdapter(
             with(todo[position]) {
                 binding.etDescriptionTODO.text = description
                 binding.etPeople.text = assignedPeople
-                if (completionState == 0) {
-                    binding.etCompletionState.background.setTint(Color.GREEN)
+                when(completionState) {
+                    0 -> binding.etCompletionState.background.setTint(Color.GREEN)
+                    1 -> binding.etCompletionState.background.setTint(Color.YELLOW)
+                    2 -> binding.etCompletionState.background.setTint(Color.RED)
                 }
-                if (completionState == 1) {
-                    binding.etCompletionState.background.setTint(Color.YELLOW)
-                }
-                if (completionState == 2) {
-                    binding.etCompletionState.background.setTint(Color.RED)
-                }
-
 
             }
         }
