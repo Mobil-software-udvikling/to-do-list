@@ -26,7 +26,7 @@ class AddToDO : AppCompatActivity() {
                     this,
                     "Please select a option from the buttons displayed",
                     Toast.LENGTH_SHORT
-                ).show();
+                ).show()
             } else {
                 val radioButton: RadioButton = findViewById(radioId)
                 if (radioButton.text.equals("Urgent")) {
@@ -37,9 +37,9 @@ class AddToDO : AppCompatActivity() {
                     completionState = 0
                 }
                 if (description.text.toString().equals("")) {
-                    description.setError("This field can not be blank")
+                    description.error = "This field can not be blank"
                 } else if (people.text.toString().equals("")) {
-                    people.setError("This field can not be blank")
+                    people.error = "This field can not be blank"
                 } else {
                     intent.putExtra("EXTRA_DESCRIPTION", description.text.toString())
                     intent.putExtra("EXTRA_COMPLETIONSTATE", completionState)

@@ -2,15 +2,12 @@ package com.to_do_list.app
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,7 +17,6 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
     private var rvTodo: RecyclerView? = null
     var listOfToDo = mutableListOf<ToDo>()
     var id: Int = -1
-    var colorCircle: Drawable? = null
 
     private lateinit var toDoListDatabase: TodoListDatabse
 
@@ -33,7 +29,6 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
 
         if (it.resultCode == Activity.RESULT_OK) {
             if (it.data?.hasExtra("ADD_EXTRA_INTENT")!!) {
-
                 val description = it.data?.getStringExtra("EXTRA_DESCRIPTION")
                 val completionState = it.data?.getIntExtra("EXTRA_COMPLETIONSTATE", 0)
                 val people = it.data?.getStringExtra("EXTRA_PEOPLE")
@@ -42,34 +37,9 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
 
                 if (listId != -1) {
                     val addToDoThread =
-                        AddTodoThread(ToDo(0, description!!, completionState!!, people!! ,listId!!))
+                        AddTodoThread(ToDo(0, description!!, completionState!!, people!!, listId))
                     addToDoThread.start()
                 }
-
-                if (completionState == 2) {
-                    if (colorCircle != null) {
-                        colorCircle!!.setTint(Color.RED)
-                    }
-                }
-
-                if (completionState == 0) {
-                    if (colorCircle != null) {
-                        colorCircle!!.setTint(Color.GREEN)
-                    }
-                }
-
-                if (listOfToDo.isEmpty()) {
-                    id = -1
-                } else {
-                    id = listOfToDo.size - 1
-                }
-                id++
-
-                listOfToDo.add(ToDo(id, description!!, completionState!!, people!!))
-
-                rvTodo!!.adapter!!.notifyItemInserted(id)
-
-                Log.d("MUTUABLELISTINDEX0", listOfToDo.toString())
             }
         }
     }
@@ -89,7 +59,15 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
                 val listID = it.data?.getIntExtra("ListID", -1)
 
                 if (listID != -1 || todoId != -1) {
-                    val deleteToDoThread = DeleteToDoThread(ToDo(todoId!!, deleteDescription!!, deleteCompleitonState!!, deletePeople!!, listID!!))
+                    val deleteToDoThread = DeleteToDoThread(
+                        ToDo(
+                            todoId!!,
+                            deleteDescription!!,
+                            deleteCompleitonState!!,
+                            deletePeople!!,
+                            listID!!
+                        )
+                    )
                     deleteToDoThread.start()
                 }
 
@@ -107,17 +85,25 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
 
 
                 var position = -1
-                for (i in toDoListDatabase.toDoDao().getAll(listID!!).indices){
-                    if(toDoListDatabase.toDoDao().getAll(listID!!)[i].id == updateID){
+                for (i in toDoListDatabase.toDoDao().getAll(listID!!).indices) {
+                    if (toDoListDatabase.toDoDao().getAll(listID)[i].id == updateID) {
                         position = i
                     }
                 }
 
                 if (listID != -1) {
-                    val updateToDoThread = UpdateToDoThread(ToDo(updateID!!, updateDescription!!, updateCompleitonState!!, updatePeople!!,listID!!))
+                    val updateToDoThread = UpdateToDoThread(
+                        ToDo(
+                            updateID!!,
+                            updateDescription!!,
+                            updateCompleitonState!!,
+                            updatePeople!!,
+                            listID
+                        )
+                    )
                     updateToDoThread.start()
                 }
-                if(position != -1){
+                if (position != -1) {
                     rvTodo!!.adapter!!.notifyItemChanged(position)
                 }
 
@@ -175,7 +161,9 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
         val listId = intent.getIntExtra("ListID", -1)
 
         if (listId != -1) {
-            listOfToDo.addAll(toDoListDatabase.toDoDao().getAll(intent.getIntExtra("ListID", listId)))
+            listOfToDo.addAll(
+                toDoListDatabase.toDoDao().getAll(intent.getIntExtra("ListID", listId))
+            )
 
 
         }

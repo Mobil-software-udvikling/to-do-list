@@ -2,7 +2,6 @@ package com.to_do_list.app
 
 import android.graphics.Color
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -16,7 +15,7 @@ class ListOfToDoAdapter(
     RecyclerView.Adapter<ListOfToDoAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: TodoLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

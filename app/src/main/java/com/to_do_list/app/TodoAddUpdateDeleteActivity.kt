@@ -12,7 +12,6 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
     private var todoLastInsertedId: Int = 0
     private lateinit var deleteButton: Button
     private lateinit var updateButton: Button
-    private lateinit var saveButton: Button
     private lateinit var etPeople: EditText
     private lateinit var etTodoText: EditText
     private lateinit var todoModel: ToDo
@@ -31,13 +30,11 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
         if (intent.hasExtra("todoLastInsertedId"))
             todoLastInsertedId = intent.getIntExtra("todoLastInsertedId", 0)
 
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
-        toolbar.setTitle("Add Update Todo")
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = "Add Update Todo"
 
-        etTodoText = findViewById(R.id.etTodoText) as EditText
-        etPeople = findViewById(R.id.etPeople) as EditText
-        saveButton = findViewById(R.id.btnSave)
-        saveButton.setOnClickListener(this)
+        etTodoText = findViewById<EditText>(R.id.etTodoText)
+        etPeople = findViewById<EditText>(R.id.etPeople)
         updateButton = findViewById(R.id.btnUpdate)
         updateButton.setOnClickListener(this)
         deleteButton = findViewById(R.id.btnDelete)
@@ -46,8 +43,6 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
         if (intent.hasExtra("todoModel")) {
             etTodoText.setText(todoModel.description)
             etPeople.setText(todoModel.assignedPeople)
-            saveButton.isClickable = false
-            saveButton.isEnabled = false
         } else {
             updateButton.isClickable = false
             updateButton.isEnabled = false
@@ -64,7 +59,7 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
             val description = etTodoText.text.toString()
             val people = etPeople.text.toString()
             var completionState = 0
-            val listId = intent.getIntExtra("ListID", - 1 )
+            val listId = intent.getIntExtra("ListID", -1)
 
             val radioGroup: RadioGroup = findViewById(R.id.ad_radioGROUP)
 
@@ -75,7 +70,7 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
                     this,
                     "Please select a option from the buttons displayed",
                     Toast.LENGTH_SHORT
-                ).show();
+                ).show()
             } else {
                 val radioButton: RadioButton = findViewById(radioId)
                 if (radioButton.text.equals("Urgent")) {
@@ -99,7 +94,7 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
             val description = etTodoText.text.toString()
             val people = etPeople.text.toString()
             var completionState = 0
-            val listId = intent.getIntExtra("ListID", - 1 )
+            val listId = intent.getIntExtra("ListID", -1)
 
             intent.putExtra("delete_ID", todoID)
             intent.putExtra("delete_Decsription", description)
