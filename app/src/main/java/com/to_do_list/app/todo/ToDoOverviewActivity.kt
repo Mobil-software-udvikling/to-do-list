@@ -1,4 +1,4 @@
-package com.to_do_list.app
+package com.to_do_list.app.todo
 
 import android.app.Activity
 import android.content.Intent
@@ -11,14 +11,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.to_do_list.app.R
+import com.to_do_list.app.common.entities.ToDo
+import com.to_do_list.app.common.persistence.ToDoListDatabase
 
-class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickListener {
+class ToDoOverviewActivity : AppCompatActivity(), View.OnClickListener, ToDoClickListener {
 
     private var rvTodo: RecyclerView? = null
     var listOfToDo = mutableListOf<ToDo>()
     var id: Int = -1
 
-    private lateinit var toDoListDatabase: TodoListDatabse
+    private lateinit var toDoListDatabase: ToDoListDatabase
 
     private var loadThread: LoadThread = LoadThread()
 
@@ -126,20 +129,20 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
 
         rvTodo = findViewById(R.id.rvToDos)
         rvTodo!!.layoutManager = LinearLayoutManager(this)
-        rvTodo!!.adapter = ListOfToDoAdapter(listOfToDo, this)
+        rvTodo!!.adapter = ToDoAdapter(listOfToDo, this)
 
         val button: FloatingActionButton = findViewById(R.id.add_fab)
         button.setOnClickListener(this)
 
         //Room
-        toDoListDatabase = TodoListDatabse.getAppDatabse(this)!!
+        toDoListDatabase = ToDoListDatabase.getAppDatabse(this)!!
 
         //start the loadThread to load from database in seperate thread
         loadThread.start()
     }
 
     override fun onClick(p0: View?) {
-        val intent = Intent(this, AddToDO::class.java)
+        val intent = Intent(this, AddToDoActivity::class.java)
         getResult.launch(intent)
     }
 

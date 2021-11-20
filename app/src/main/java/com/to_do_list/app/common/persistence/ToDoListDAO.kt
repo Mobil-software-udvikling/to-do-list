@@ -1,6 +1,7 @@
-package com.to_do_list.app
+package com.to_do_list.app.common.persistence
 
 import androidx.room.*
+import com.to_do_list.app.common.entities.ToDoList
 
 
 /**

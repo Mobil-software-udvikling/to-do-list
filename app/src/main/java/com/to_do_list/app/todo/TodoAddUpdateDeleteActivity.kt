@@ -1,10 +1,12 @@
-package com.to_do_list.app
+package com.to_do_list.app.todo
 
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.to_do_list.app.R
+import com.to_do_list.app.common.entities.ToDo
 
 class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
 
