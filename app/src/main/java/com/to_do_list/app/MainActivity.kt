@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
             //Instatiate new thread for inserting the added list to the database and reload the data from database
             val addListThread = AddListAndReloadThread(newList)
             addListThread.start()
-            //rView?.adapter?.notifyDataSetChanged()
         }
     }
 
@@ -63,8 +62,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
                     //Start a new update and reload thread
                     val updateListThread = UpdateListAndReloadThread(updatedToDoList)
                     updateListThread.start()
-                    //Notify recyclerVview about changes in the dataSet.
-                    rView?.adapter?.notifyDataSetChanged()
                 }
 
             } else if (it.data?.hasExtra("delete")!!) {
@@ -77,8 +74,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
                     //Start new deleteAndReloadThread
                     val deleteListThread = DeleteAndReloadThread(deleteToDoList)
                     deleteListThread.start()
-                    //Notify recyclerView about the deletion
-                    rView?.adapter?.notifyDataSetChanged()
                 }
             }
         }
@@ -141,12 +136,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         toDoList.clear()
         Thread.sleep(200)
         startLoadThread()
+        //Notify RecyclerView about dataUpdates
+        runOnUiThread(Runnable { rView?.adapter?.notifyDataSetChanged() })
         super.onResume()
     }
 
     fun loadListsFromDatabase() {
         //Clear all the data from the list
         toDoList.clear()
+
         //Get all list from databse and add them to the list
         toDoList.addAll(toDoListDatabase.ToDoListDao().getAll())
     }
