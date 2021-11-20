@@ -30,22 +30,47 @@
         android:hint="Peoples"
         android:layout_height="wrap_content"
         android:id="@+id/etPeople"/>
-    <CheckBox
+
+    <RadioGroup
+        android:id="@+id/ad_radioGROUP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:id="@+id/cbDone"
-        android:text="Done"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ad_People"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RadioButton
+            android:id="@+id/update_radioUrgent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Urgent" />
+
+        <RadioButton
+            android:id="@+id/update_radioSoon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Soon" />
+
+        <RadioButton
+            android:id="@+id/update_radioCompleted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Completeted" />
+
+    </RadioGroup>
+
+
     <LinearLayout
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:id="@+id/btnSave"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -17,8 +17,6 @@
         android:background="@drawable/layout_bg"
         android:orientation="horizontal">
 
-
-
         <TextView
             android:id="@+id/et_descriptionTODO"
             android:layout_width="237dp"
@@ -51,12 +49,13 @@
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:textAlignment="center"
+            android:src="@drawable/circle_to_do"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.512"
-            app:drawableBottomCompat="@drawable/circle_to_do" />
+            android:background="@drawable/circle_to_do"
+            android:textCursorDrawable="@drawable/circle_to_do"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

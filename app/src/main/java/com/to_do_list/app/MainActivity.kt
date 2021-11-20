@@ -85,7 +85,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-
         val drawer = findViewById<DrawerLayout>(R.id.drawer)
         val drawerToggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(drawerToggle)
