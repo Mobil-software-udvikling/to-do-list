@@ -1,4 +1,4 @@
-package com.to_do_list.app
+package com.to_do_list.app.todo
 
 import android.graphics.Color
 import android.os.Build
@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.to_do_list.app.common.entities.ToDo
 import com.to_do_list.app.databinding.TodoLayoutBinding
 
-class ListOfToDoAdapter(
+class ToDoAdapter(
     private var todo: MutableList<ToDo>,
-    private var itemClickListener: ToDoListClickListener
+    private var itemClickListener: ToDoClickListener
 ) :
-    RecyclerView.Adapter<ListOfToDoAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: TodoLayoutBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -21,7 +21,7 @@ class ListOfToDoAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ListOfToDoAdapter.ViewHolder {
+    ): ViewHolder {
         val binding = TodoLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }

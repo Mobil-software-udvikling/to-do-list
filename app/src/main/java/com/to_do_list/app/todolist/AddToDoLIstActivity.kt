@@ -1,10 +1,11 @@
-package com.to_do_list.app
+package com.to_do_list.app.todolist
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.to_do_list.app.R
 
 /**
  * @author Nichlas Daniel Boraso(nibor19)

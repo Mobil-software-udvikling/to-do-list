@@ -1,10 +1,11 @@
-package com.to_do_list.app
+package com.to_do_list.app.todo
 
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.to_do_list.app.R
 
-class AddToDo : AppCompatActivity() {
+class AddToDoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

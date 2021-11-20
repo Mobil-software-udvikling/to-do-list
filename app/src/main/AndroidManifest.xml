@@ -10,24 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Todolist">
         <activity
-            android:name=".EditDeleteToDoListActivity"
+            android:name=".todolist.EditDeleteToDoListActivity"
             android:exported="true"
             />
         <activity
-            android:name=".MainActivity"
+            android:name=".todolist.MainActivity"
             android:exported="true"
             android:label="Main" />
         <activity
-            android:name=".AddToDoLIstActivity"
+            android:name=".todolist.AddToDoLIstActivity"
             android:exported="true" />
         <activity
-            android:name=".ListOfToDos"
+            android:name=".todo.ToDoOverviewActivity"
             android:exported="true" />
         <activity
-            android:name=".TodoAddUpdateDeleteActivity"
+            android:name=".todo.TodoAddUpdateDeleteActivity"
             android:exported="true" />
         <activity
-            android:name=".AddToDo"
+            android:name=".todo.AddToDoActivity"
             android:exported="true"/>
         <activity
             android:name=".SplashScreen"

@@ -1,4 +1,4 @@
-package com.to_do_list.app
+package com.to_do_list.app.todolist
 
 import android.app.Activity
 import android.content.Intent
@@ -13,8 +13,10 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.to_do_list.app.*
 import com.to_do_list.app.common.entities.ToDoList
 import com.to_do_list.app.common.persistence.TodoListDatabse
+import com.to_do_list.app.todo.ToDoOverviewActivity
 
 /**
  * @author Nichlas Daniel Boraso(nibor19)
@@ -151,7 +153,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
     }
 
     override fun onListClickListener(data: ToDoList) {
-        val intent = Intent(this, ListOfToDos::class.java)
+        val intent = Intent(this, ToDoOverviewActivity::class.java)
         intent.putExtra("ListName", data.listName)
         intent.putExtra("ListID", data.id)
         startActivity(intent)

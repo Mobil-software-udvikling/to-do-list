@@ -1,4 +1,4 @@
-package com.to_do_list.app
+package com.to_do_list.app.todo
 
 import android.app.Activity
 import android.content.Intent
@@ -11,10 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.to_do_list.app.R
 import com.to_do_list.app.common.entities.ToDo
 import com.to_do_list.app.common.persistence.TodoListDatabse
 
-class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickListener {
+class ToDoOverviewActivity : AppCompatActivity(), View.OnClickListener, ToDoClickListener {
 
     private var rvTodo: RecyclerView? = null
     var listOfToDo = mutableListOf<ToDo>()
@@ -128,7 +129,7 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
 
         rvTodo = findViewById(R.id.rvToDos)
         rvTodo!!.layoutManager = LinearLayoutManager(this)
-        rvTodo!!.adapter = ListOfToDoAdapter(listOfToDo, this)
+        rvTodo!!.adapter = ToDoAdapter(listOfToDo, this)
 
         val button: FloatingActionButton = findViewById(R.id.add_fab)
         button.setOnClickListener(this)
@@ -141,7 +142,7 @@ class ListOfToDos : AppCompatActivity(), View.OnClickListener, ToDoListClickList
     }
 
     override fun onClick(p0: View?) {
-        val intent = Intent(this, AddToDo::class.java)
+        val intent = Intent(this, AddToDoActivity::class.java)
         getResult.launch(intent)
     }
 
