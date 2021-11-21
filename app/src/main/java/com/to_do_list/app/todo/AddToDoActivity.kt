@@ -19,7 +19,7 @@ class AddToDoActivity : AppCompatActivity() {
 
             val description: EditText = findViewById(R.id.ad_Description)
             val people: EditText = findViewById(R.id.ad_People)
-            var completionState: Int = 0
+            var completionState = 0
             val radioId = radioGroup.checkedRadioButtonId
 
             if (radioGroup.checkedRadioButtonId == -1) {
@@ -30,12 +30,10 @@ class AddToDoActivity : AppCompatActivity() {
                 ).show()
             } else {
                 val radioButton: RadioButton = findViewById(radioId)
-                if (radioButton.text.equals("To do")) {
-                    completionState = 2
-                } else if (radioButton.text.equals("Doing")) {
-                    completionState = 1
-                } else if (radioButton.text.equals("Done")) {
-                    completionState = 0
+                when (radioButton.text) {
+                    "To do" -> completionState = 2
+                    "Doing" -> completionState = 1
+                    "Done" -> completionState = 0
                 }
                 if (description.text.toString().equals("")) {
                     description.error = "This field can not be blank"
@@ -50,10 +48,6 @@ class AddToDoActivity : AppCompatActivity() {
                     finish()
                 }
             }
-
-
         }
-
-
     }
 }

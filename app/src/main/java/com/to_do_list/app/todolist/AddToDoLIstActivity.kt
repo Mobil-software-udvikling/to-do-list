@@ -32,5 +32,4 @@ class AddToDoLIstActivity : AppCompatActivity(), View.OnClickListener {
         setResult(RESULT_OK, intent)
         finish()
     }
-
 }

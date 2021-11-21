@@ -13,7 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.to_do_list.app.*
+import com.to_do_list.app.R
 import com.to_do_list.app.common.entities.ToDoList
 import com.to_do_list.app.common.persistence.ToDoListDatabase
 import com.to_do_list.app.todo.ToDoOverviewActivity
@@ -55,29 +55,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         if (it.resultCode == Activity.RESULT_OK) {
             //extraxt the changed listID
             val ID = it.data?.getIntExtra("ListID", -1)
-            if (it.data?.hasExtra("update")!!) {
-                if (ID == -1) {
-                    Log.i("updateError", "Something went wrong with the update..")
-                } else {
-                    //Extract the name
-                    val newName = it.data?.getStringExtra("UpdatedListName")
-                    val updatedToDoList = ToDoList(ID!!, newName!!, "")
-
-                    //Start a new update and reload thread
-                    val updateListThread = UpdateListAndReloadThread(updatedToDoList)
-                    updateListThread.start()
+            val action = it.data?.getStringExtra("action")
+            when (action) {
+                "update" -> {
+                    if (ID == -1) {
+                        Log.i("updateError", "Something went wrong with the update..")
+                    } else {
+                        //Extract the name
+                        val newName = it.data?.getStringExtra("ListName")
+                        val updatedToDoList = ToDoList(ID!!, newName!!, "")
+                        //Start a new update thread
+                        val updateListThread = UpdateListAndReloadThread(updatedToDoList)
+                        updateListThread.start()
+                    }
                 }
-
-            } else if (it.data?.hasExtra("delete")!!) {
-                if (ID == -1) {
-                    Log.i("DeleteError", "Something went wrong in the deletion")
-                } else {
-                    //extract the name of the list to delete
-                    val deleteName = it.data?.getStringExtra("DeleteListName")
-                    val deleteToDoList = ToDoList(ID!!, deleteName!!, "")
-                    //Start new deleteAndReloadThread
-                    val deleteListThread = DeleteAndReloadThread(deleteToDoList)
-                    deleteListThread.start()
+                "delete" -> {
+                    if (ID == -1) {
+                        Log.i("DeleteError", "Something went wrong in the deletion")
+                    } else {
+                        //extract the name of the list to delete
+                        val deleteName = it.data?.getStringExtra("ListName")
+                        val deleteToDoList = ToDoList(ID!!, deleteName!!, "")
+                        //Start new delete Thread
+                        val deleteListThread = DeleteAndReloadThread(deleteToDoList)
+                        deleteListThread.start()
+                    }
                 }
             }
         }
@@ -209,9 +211,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         }
         loadThread = LoadThread()
         loadThread.start()
-
-
     }
-
-
 }
