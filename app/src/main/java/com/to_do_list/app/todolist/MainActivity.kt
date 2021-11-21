@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListOnClickListe
         val drawerToggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
+        setTitle(R.string.ToDoLists_title)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
