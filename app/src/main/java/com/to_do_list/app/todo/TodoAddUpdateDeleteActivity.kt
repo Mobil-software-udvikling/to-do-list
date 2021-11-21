@@ -10,8 +10,6 @@ import com.to_do_list.app.common.entities.ToDo
 
 class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
 
-
-    private var todoLastInsertedId: Int = 0
     private lateinit var deleteButton: Button
     private lateinit var updateButton: Button
     private lateinit var etPeople: EditText
@@ -28,9 +26,6 @@ class TodoAddUpdateDeleteActivity : AppCompatActivity(), View.OnClickListener {
 
         if (intent.hasExtra("todoModel"))
             todoModel = intent.getParcelableExtra<ToDo>("todoModel")!!
-
-        if (intent.hasExtra("todoLastInsertedId"))
-            todoLastInsertedId = intent.getIntExtra("todoLastInsertedId", 0)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         toolbar.title = "Add Update Todo"

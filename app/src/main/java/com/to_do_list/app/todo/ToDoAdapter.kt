@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.to_do_list.app.R
 import com.to_do_list.app.common.entities.ToDo
 import com.to_do_list.app.databinding.TodoLayoutBinding
 
@@ -36,10 +37,10 @@ class ToDoAdapter(
             with(todo[position]) {
                 binding.etDescriptionTODO.text = description
                 binding.etPeople.text = assignedPeople
-                when (completionState) {
-                    0 -> binding.etCompletionState.background.setTint(Color.GREEN)
-                    1 -> binding.etCompletionState.background.setTint(Color.YELLOW)
-                    2 -> binding.etCompletionState.background.setTint(Color.RED)
+                when(completionState) {
+                    0 -> binding.etCompletionState.background.setTint(Color.parseColor("#49DB3c"))
+                    1 -> binding.etCompletionState.background.setTint(Color.parseColor("#FFE424"))
+                    2 -> binding.etCompletionState.background.setTint(Color.parseColor("#DB3A34"))
                 }
 
             }
